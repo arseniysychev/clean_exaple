@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+    db:
+        image: cockroachdb/cockroach:v22.1.9
+        ports:
+            - "26257:26257"
+            - "8080:8080"
+        command: start-single-node --insecure
+
+    app:
+        container_name: work-view
+        build:
+            context: ..
+            dockerfile: build/Dockerfile
+        environment:
+            - DB_HOST=db
+            - DB_PORT=26257
+            - DB_NAME=test
+            - DB_USER=root
+            - DB_PASSWORD=
+            - GRPC_HOST=0.0.0.0
+            - GRPC_PORT=50051
+
+#        volumes:
+#            - ../api/:/src/api
+#            - ../cmd/:/src/cmd
+#            - ../internal/:/src/internal
+#            - ../Makefile:/src/Makefile
+#            - ../go.mod:/src/go.mod
+
+        ports:
+            - "50051:50051"
+        depends_on:
+            - db
+        command: sleep infinity

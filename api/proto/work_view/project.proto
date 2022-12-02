@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package work_view;
+option go_package = "fdlt/work_view/v1";
+
+import "google/protobuf/timestamp.proto";
+
+
+message Project {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
+  string title = 4;
+}
+
+message ProjectCreateRequest {
+  string title = 1;
+}

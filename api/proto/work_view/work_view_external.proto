@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package work_view;
+option go_package = "fdlt/work_view/v1";
+
+import "work_view/base.proto";
+import "work_view/project.proto";
+
+// The External WorkView service
+service WorkViewExternalService {
+  rpc ProjectCreate (ProjectCreateRequest) returns (ID) {}
+  rpc ProjectGet (ID) returns (Project) {}
+  rpc ProjectDelete (ID) returns (Empty) {}
+}

@@ -1,0 +1,4 @@
+version: v1
+name: buf.build/fdlt/work-view
+deps:
+  - buf.build/googleapis/googleapis
